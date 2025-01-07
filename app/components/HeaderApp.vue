@@ -259,7 +259,7 @@ span {
 
 @media (max-width: 500px) {
     .img-container {
-        height: 100%;
+        height: calc(100% + 4px);
     }
     .infoo {
         translate: 0px 155px;
