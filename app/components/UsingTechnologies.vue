@@ -36,11 +36,6 @@
                                 <img src="../assets/logo.svg" alt="" class="logo">
                             </v-btn>
                         </a>
-                        <a href="https://react.dev/learn">
-                            <v-btn class="logocard">
-                                <img src="../assets/react.Default" alt="" class="logo">
-                            </v-btn>
-                        </a>
                         <a href="https://vuejs.org/guide/introduction.html">
                             <v-btn class="logocard">
                                 <img src="../assets/vue-logo.svg" alt="" class="logo">
