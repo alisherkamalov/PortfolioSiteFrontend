@@ -1,5 +1,4 @@
 <template>
-    <!-- Оборачиваем весь контент в один корневой элемент -->
     <div class="main">
         <nav>
             <ul>
@@ -27,22 +26,35 @@
                     I am a developer specializing in creating {{ text }} websites.
                 </v-card-text>
                 <v-card-text>
-                    <v-btn class="btn-next">Next</v-btn>
+                    <v-btn class="btn-next" @click="clickedNext()">Next</v-btn>
                 </v-card-text>
             </v-card>
+            <v-icon class="btn-down" @click="scrollDown()">mdi mdi-arrow-down</v-icon>
         </v-row>
 
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineEmits } from 'vue';
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
+const btnNext = defineEmits(['nextClicked']);
 
+function clickedNext() {
+    btnNext('nextClicked');
+}
 function toggleTheme() {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+}
+function scrollDown() {
+    window.scrollBy({
+        top: 700,
+        left: 0,
+        behavior: 'smooth'
+    });
+
 }
 const text = ref('');
 
@@ -98,6 +110,28 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@keyframes down {
+    0% {
+        translate: 0px -220px;
+    }
+
+    20% {
+        translate: 0px -210px;
+    }
+
+    50% {
+        translate: 0px -220px;
+    }
+
+    70% {
+        translate: 0px -220px;
+    }
+
+    100% {
+        translate: 0px -220px;
+    }
+}
+
 ul {
     width: 100%;
     display: flex;
@@ -195,12 +229,13 @@ span {
     justify-content: center;
     text-align: center;
     line-height: 50px !important;
+    color: white !important;
 }
 
 .blackbg {
     z-index: 1;
     background-color: black;
-    opacity: 0.6;
+    opacity: 0.8;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -224,6 +259,13 @@ span {
     display: none;
 }
 
+.btn-down {
+    scale: 2;
+    translate: 0px -220px;
+    z-index: 5;
+    animation: down 3s infinite;
+}
+
 @media (max-width: 800px) {
     .img-container {
         height: 667px;
@@ -233,13 +275,28 @@ span {
         font-size: 30px;
         max-width: 80% !important;
     }
-}
 
+    .btn-down {
+        display: flex;
+    }
+    .main {
+        max-height: 600px;
+        overflow: hidden;
+    }
+}
 @media (max-width: 1130px) {
     .conttext {
         font-size: 50px !important;
         max-width: 80% !important;
         line-height: 25px;
+    }
+
+    .btn-down {
+        display: flex;
+    }
+    .main {
+        max-height: 600px;
+        overflow: hidden;
     }
 }
 
@@ -251,8 +308,19 @@ span {
         font-weight: 200;
     }
 
+    .btn-down {
+        display: flex;
+    }
+
     .img-container {
         height: 467px;
+    }
+    .main {
+        max-height: 500px;
+        overflow: hidden;
+    }
+    .btn-down {
+        margin-top: 100px;
     }
 }
 
@@ -261,9 +329,11 @@ span {
     .img-container {
         height: calc(100% + 4px);
     }
+
     .infoo {
         translate: 0px 155px;
     }
+
     .conttext {
         font-size: 30px !important;
         max-width: 90% !important;
@@ -273,12 +343,30 @@ span {
     .btn-next {
         display: flex;
     }
+
+    .btn-down {
+        display: none;
+    }
+    .main {
+        height: 100dvh;
+        max-height: none;
+    }
 }
-@media (max-width: 400px) { 
+
+@media (max-width: 400px) {
     .conttext {
         height: 200px;
     }
+
+    .btn-down {
+        display: none;
+    }
+    .main {
+        height: 100dvh;
+        max-height: none;
+    }
 }
+
 @media (min-width: 1130px) {
     .conttext {
         translate: 0px 15px;
@@ -287,8 +375,16 @@ span {
         line-height: 25px;
     }
 
+    .btn-down {
+        display: flex;
+    }
+
     .img-container {
         height: 667px;
+    }
+    .main {
+        max-height: 600px;
+        overflow: hidden;
     }
 }
 </style>

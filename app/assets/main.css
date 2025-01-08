@@ -7,16 +7,12 @@ h5,
 h6 {
     font-family: 'Inter';
     font-weight: 500;
-    color: white;
     background-color: transparent;
-    user-select: none;
 }
 div {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    color: white;
-    user-select: none;
 }
 p {
     font-family: 'Inter';
@@ -30,4 +26,14 @@ p {
 .v-footer {
     display: none !important;
   }
-  
+  @media (max-width: 1130px) {
+
+}
+@media (min-width: 501px) {
+
+}
+@media (max-width: 500px) {
+    body {
+        overflow: hidden;
+    }
+}
